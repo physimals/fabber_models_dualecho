@@ -13,7 +13,7 @@
 #include <stdexcept>
 #include "newimage/newimageall.h"
 using namespace NEWIMAGE;
-#include "easylog.h"
+#include "fabbercore/easylog.h"
 
 FactoryRegistration<FwdModelFactory,  Quipss2FwdModel> 
   Quipss2FwdModel::registration("quipss2");

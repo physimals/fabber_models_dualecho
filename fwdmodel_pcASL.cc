@@ -13,7 +13,7 @@
 #include <stdexcept>
 #include "newimage/newimageall.h"
 using namespace NEWIMAGE;
-#include "easylog.h"
+#include "fabbercore/easylog.h"
 
 FactoryRegistration<FwdModelFactory,  pcASLFwdModel> 
   pcASLFwdModel::registration("pcasl-dualecho");

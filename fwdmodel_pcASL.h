@@ -18,8 +18,8 @@
 #ifndef __FABBER_FWDMODEL_PCASL_H
 #define __FABBER_FWDMODEL_PCASL_H 1
 
-#include "fwdmodel.h"
-#include "inference.h"
+#include "fabbercore/fwdmodel.h"
+#include "fabbercore/inference.h"
 #include <string>
 using namespace std;
 
