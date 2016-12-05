@@ -17,8 +17,8 @@
 #ifndef __FABBER_FWDMODEL_QUIPSS2_H
 #define __FABBER_FWDMODEL_QUIPSS2_H 1
 
-#include "fabbercore/fwdmodel.h"
-#include "fabbercore/inference.h"
+#include "fabber_core/fwdmodel.h"
+#include "fabber_core/inference.h"
 #include <string>
 using namespace std;
 
@@ -28,10 +28,10 @@ public:
 
   // Virtual function overrides
   virtual void Initialize(ArgsType& args);
-  virtual void Evaluate(const ColumnVector& params, 
-			      ColumnVector& result) const;
+  virtual void Evaluate(const NEWMAT::ColumnVector& params, 
+			      NEWMAT::ColumnVector& result) const;
   virtual vector<string> GetUsage() const;
-  virtual void DumpParameters(const ColumnVector& vec,
+  virtual void DumpParameters(const NEWMAT::ColumnVector& vec,
                                 const string& indents = "") const;
                                 
   virtual void NameParams(vector<string>& names) const;     
@@ -61,18 +61,18 @@ protected: // Constants
 
   // Slow submatrixing... but it works.
   // In fact, it's plenty fast enough.. fwd model is a small part calculation time
-  ReturnMatrix QnOf(const ColumnVector& params) const
+  NEWMAT::ReturnMatrix QnOf(const NEWMAT::ColumnVector& params) const
     { return params.Rows(Q0index()+1,Q0index()+Qbasis.Ncols()).Evaluate(); }
-  ReturnMatrix MnOf(const ColumnVector& params) const
+  NEWMAT::ReturnMatrix MnOf(const NEWMAT::ColumnVector& params) const
     { return params.Rows(M0index()+1,M0index()+Mbasis.Ncols()).Evaluate(); }
-  ReturnMatrix RnOf(const ColumnVector& params) const
+  NEWMAT::ReturnMatrix RnOf(const NEWMAT::ColumnVector& params) const
     { return params.Rows(R0index()+1,R0index()+Rbasis.Ncols()).Evaluate(); }  
-  ReturnMatrix NnOf(int te, const ColumnVector& params) const
+  NEWMAT::ReturnMatrix NnOf(int te, const NEWMAT::ColumnVector& params) const
     { return params.Rows(NnStart(te),NnStart(te+1)-1).Evaluate(); }
 
   // scan parameters
-  ColumnVector rho;
-  ColumnVector echoTime;
+  NEWMAT::ColumnVector rho;
+  NEWMAT::ColumnVector echoTime;
   double TI1, TI2;
   
   // assumed known constants
@@ -80,10 +80,10 @@ protected: // Constants
   double stdevT1b, stdevInvEff, stdevDt; // >0 means treat these as parameters!
   
   // basis for each piece
-  Matrix Qbasis; // basis in columns?
-  Matrix Mbasis;
-  Matrix Rbasis;
-  Matrix Nbasis;
+  NEWMAT::Matrix Qbasis; // basis in columns?
+  NEWMAT::Matrix Mbasis;
+  NEWMAT::Matrix Rbasis;
+  NEWMAT::Matrix Nbasis;
 
 private:
   /** Auto-register with forward model factory. */

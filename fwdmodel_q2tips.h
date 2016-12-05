@@ -17,8 +17,8 @@ public:
   static FwdModel* NewInstance();
 
   // Virtual function overrides
-  virtual void Evaluate(const ColumnVector& params, 
-			      ColumnVector& result) const;
+  virtual void Evaluate(const NEWMAT::ColumnVector& params, 
+			      NEWMAT::ColumnVector& result) const;
 
   virtual string ModelVersion() const;
 

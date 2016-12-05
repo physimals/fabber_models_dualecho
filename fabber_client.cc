@@ -6,7 +6,7 @@
 
 /*  CCOPYRIGHT */
 
-#include "fabbercore/fabber_core.h"
+#include "fabber_core/fabber_core.h"
 
 // Models to be included from library
 #include "fwdmodel_pcASL.h"
