@@ -21,7 +21,9 @@ public:
 			      NEWMAT::ColumnVector& result) const;
 
   virtual string ModelVersion() const;
-
+  virtual void GetOptions(std::vector<OptionSpec> &opts) const;
+  virtual std::string GetDescription() const;
+  
   virtual ~Q2tipsFwdModel() { return; }
 
   virtual void Initialize(ArgsType& args);

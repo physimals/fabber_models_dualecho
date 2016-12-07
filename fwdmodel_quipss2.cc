@@ -26,6 +26,37 @@ string Quipss2FwdModel::ModelVersion() const
   return "$Id: fwdmodel_quipss2.cc,v 1.25 2013/01/25 11:01:45 chappell Exp $";
 }
 
+static OptionSpec OPTIONS[] =
+{
+	{ "bold-basis", OPT_MATRIX, "BOLD basis design file", OPT_REQ, "" },
+	{ "cbf-basis", OPT_MATRIX, "CBF basis design file", OPT_REQ, "" },
+	{ "statmag-basis", OPT_MATRIX, "STATMAG basis design file", OPT_REQ, "" },
+	{ "nuisance-basis", OPT_MATRIX, "nuisance regressors design file", OPT_NONREQ, "2.0" },
+	{ "ti1", OPT_FLOAT, "ti1 (s)", OPT_NONREQ, "0.6" },
+	{ "ti2", OPT_FLOAT, "ti2 (s)", OPT_NONREQ, "1.5" },
+	{ "t1b_stdev", OPT_FLOAT, "T1 standard deviation of blood (if specified will add it as a parameter)", OPT_NONREQ, "0" },
+	{ "t1b", OPT_FLOAT, "T1 of blood", OPT_NONREQ, "1.66" },
+	{ "inv-eff-stdev", OPT_FLOAT, "Inversion efficiency standard deviation (if specified will add it as a parameter)", OPT_NONREQ, "0" },
+	{ "inv-eff", OPT_FLOAT, "Inversion efficiency", OPT_NONREQ, "1" },
+	{ "dt-stdev", OPT_FLOAT, "Bolus arrival time standard deviation", OPT_NONREQ, "0.25" },
+	{ "dt", OPT_FLOAT, "Bolus arrival time", OPT_NONREQ, "0.5" },
+	{ "tag-pattern", OPT_STR, "String_of_Ts_and_Cs", OPT_NONREQ, "TC" },
+	{ "te<n>", OPT_FLOAT, "Echo times. Two are required, if less are specified they are taken as 9.1ms and 30ms", OPT_NONREQ, "" },
+	{ "" }, };
+
+void Quipss2FwdModel::GetOptions(vector<OptionSpec> &opts) const
+{
+	for (int i = 0; OPTIONS[i].name != ""; i++)
+	{
+		opts.push_back(OPTIONS[i]);
+	}
+}
+
+std::string Quipss2FwdModel::GetDescription() const
+{
+	return "Implements the QUIPSS II ASL";
+}
+
 void Quipss2FwdModel::HardcodedInitialDists(MVNDist& prior, 
     MVNDist& posterior) const
 {

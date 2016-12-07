@@ -26,6 +26,37 @@ string pcASLFwdModel::ModelVersion() const
   return "$Id: fwdmodel_pcASL.cc,v 1.5 2013/01/25 10:57:32 chappell Exp $";
 }
 
+static OptionSpec OPTIONS[] =
+{
+	{ "bold-basis", OPT_MATRIX, "BOLD basis design file", OPT_REQ, "" },
+	{ "cbf-basis", OPT_MATRIX, "CBF basis design file", OPT_REQ, "" },
+	{ "statmag-basis", OPT_MATRIX, "STATMAG basis design file", OPT_REQ, "" },
+	{ "nuisance-basis", OPT_MATRIX, "nuisance regressors design file", OPT_NONREQ, "2.0" },
+	{ "ti", OPT_FLOAT, "ti (s)", OPT_NONREQ, "2.0" },
+	{ "tau", OPT_FLOAT, "tau", OPT_NONREQ, "1.0" },
+	{ "t1b_stdev", OPT_FLOAT, "T1 standard deviation of blood (if specified will add it as a parameter)", OPT_NONREQ, "0" },
+	{ "t1b", OPT_FLOAT, "T1 of blood", OPT_NONREQ, "1.66" },
+	{ "inv-eff-stdev", OPT_FLOAT, "Inversion efficiency standard deviation (if specified will add it as a parameter)", OPT_NONREQ, "0" },
+	{ "inv-eff", OPT_FLOAT, "Inversion efficiency", OPT_NONREQ, "1" },
+	{ "dt-stdev", OPT_FLOAT, "Bolus arrival time standard deviation", OPT_NONREQ, "0.25" },
+	{ "dt", OPT_FLOAT, "Bolus arrival time", OPT_NONREQ, "0.5" },
+	{ "tag-pattern", OPT_STR, "Pattern of Ts and Cs", OPT_NONREQ, "TC" },
+	{ "te<n>", OPT_FLOAT, "Echo times. Two are required, if less are specified they are taken as 9.1ms and 30ms", OPT_NONREQ, "" },
+	{ "" }, };
+
+void pcASLFwdModel::GetOptions(vector<OptionSpec> &opts) const
+{
+	for (int i = 0; OPTIONS[i].name != ""; i++)
+	{
+		opts.push_back(OPTIONS[i]);
+	}
+}
+
+std::string pcASLFwdModel::GetDescription() const
+{
+	return "Implements (pseudo) continuous ASL for multi-echo time functional analysis";
+}
+
 void pcASLFwdModel::HardcodedInitialDists(MVNDist& prior, 
     MVNDist& posterior) const
 {

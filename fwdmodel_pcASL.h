@@ -34,7 +34,9 @@ public:
   virtual vector<string> GetUsage() const;              
   virtual void DumpParameters(const NEWMAT::ColumnVector& vec,
                                 const string& indents = "") const;
-                                
+  virtual void GetOptions(std::vector<OptionSpec> &opts) const;
+  virtual std::string GetDescription() const;
+                              
   virtual void NameParams(vector<string>& names) const;     
   virtual int NumParams() const
     { return NnStart(echoTime.Ncols()+1) + (stdevT1b>0?1:0) 

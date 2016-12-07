@@ -21,6 +21,16 @@ using Utilities::Tracer_Plus;
 FactoryRegistration<FwdModelFactory,  Q2tipsFwdModel> 
   Q2tipsFwdModel::registration("q2tips-dualecho");
 
+void Q2tipsFwdModel::GetOptions(vector<OptionSpec> &opts) const
+{
+	Quipss2FwdModel::GetOptions(opts);
+}
+
+std::string Q2tipsFwdModel::GetDescription() const
+{
+	return "Implements a Q2TIPS dual-echo ASL model";
+}
+
 FwdModel* Q2tipsFwdModel::NewInstance()
 {
   return new Q2tipsFwdModel();
