@@ -2,10 +2,10 @@ include ${FSLCONFDIR}/default.mk
 
 PROJNAME = fabber_dualecho
 
-USRINCFLAGS = -I${INC_NEWMAT} -I${INC_PROB} -I${INC_BOOST}
+USRINCFLAGS = -I${INC_NEWMAT} -I${INC_PROB} -I${INC_BOOST} 
 USRLDFLAGS = -L${LIB_NEWMAT} -L${LIB_PROB}
 
-LIBS = -lutils -lnewimage -lmiscmaths -lprob -lnewmat -lfslio -lniftiio -lznz -lz -lfabbercore 
+LIBS = -lutils -lnewimage -lmiscmaths -lprob -lnewmat -lfslio -lniftiio -lznz -lz -ldl
 
 XFILES = fabber
 
@@ -28,6 +28,6 @@ libfabbermodels_dualecho.a : ${OBJS}
 
 # fabber built from the FSL fabbercore library including the models specifieid in this project
 fabber : fabber_client.o ${OBJS}
-	${CXX} ${CXXFLAGS} ${LDFLAGS} -o $@ $< ${OBJS} -lfabbercore ${LIBS}
+	${CXX} ${CXXFLAGS} ${LDFLAGS} -o $@ $< ${OBJS} -lfabbercore -lfabberexec ${LIBS}
 
 # DO NOT DELETE
