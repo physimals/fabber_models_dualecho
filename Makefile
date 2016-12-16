@@ -20,10 +20,10 @@ OPTFLAGS = -ggdb
 # Build
 #
 
-all:	${XFILES} libfabbermodels_dualecho.a
+all:	${XFILES} libfabber_models_dualecho.a
 
 # models in a library
-libfabbermodels_dualecho.a : ${OBJS}
+libfabber_models_dualecho.a : ${OBJS}
 	${AR} -r $@ ${OBJS}
 
 # fabber built from the FSL fabbercore library including the models specifieid in this project
