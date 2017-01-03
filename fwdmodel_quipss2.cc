@@ -15,9 +15,6 @@
 using namespace NEWIMAGE;
 #include "fabber_core/easylog.h"
 
-#include "utils/tracer_plus.h"
-using Utilities::Tracer_Plus;
-
 FactoryRegistration<FwdModelFactory,  Quipss2FwdModel> 
   Quipss2FwdModel::registration("quipss2");
 
@@ -60,7 +57,6 @@ std::string Quipss2FwdModel::GetDescription() const
 void Quipss2FwdModel::HardcodedInitialDists(MVNDist& prior, 
     MVNDist& posterior) const
 {
-    Tracer_Plus tr("Quipss2FwdModel::HardcodedInitialDists");
     assert(prior.means.Nrows() == NumParams());
     
     // Set priors
@@ -114,7 +110,6 @@ void Quipss2FwdModel::HardcodedInitialDists(MVNDist& prior,
 
 void Quipss2FwdModel::Evaluate(const ColumnVector& params, ColumnVector& result) const
 {
-    Tracer_Plus tr("Quipss2FwdModel::Evaluate");
     // Adapted from original_fwdmodel.m
     
     // Parameterization used in most recent results:

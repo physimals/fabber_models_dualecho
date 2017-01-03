@@ -15,9 +15,6 @@
 using namespace NEWIMAGE;
 #include "fabber_core/easylog.h"
 
-#include "utils/tracer_plus.h"
-using Utilities::Tracer_Plus;
-
 FactoryRegistration<FwdModelFactory,  Q2tipsFwdModel> 
   Q2tipsFwdModel::registration("q2tips-dualecho");
 
@@ -49,8 +46,7 @@ void Q2tipsFwdModel::Initialize(ArgsType& args)
 
 void Q2tipsFwdModel::Evaluate(const ColumnVector& params, ColumnVector& result) const
 {
-    Tracer_Plus tr("Q2tipsFwdModel::Evaluate");
-    // Adapted from original_fwdmodel.m
+   // Adapted from original_fwdmodel.m
     
     // Parameterization used in most recent results:
     // Absolute M and Q change (same units as M0 or Q0):

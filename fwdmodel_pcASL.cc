@@ -15,9 +15,6 @@
 using namespace NEWIMAGE;
 #include "fabber_core/easylog.h"
 
-#include "utils/tracer_plus.h"
-using Utilities::Tracer_Plus;
-
 FactoryRegistration<FwdModelFactory,  pcASLFwdModel> 
   pcASLFwdModel::registration("pcasl-dualecho");
 
@@ -60,7 +57,6 @@ std::string pcASLFwdModel::GetDescription() const
 void pcASLFwdModel::HardcodedInitialDists(MVNDist& prior, 
     MVNDist& posterior) const
 {
-    Tracer_Plus tr("pcASLFwdModel::HardcodedInitialDists");
     assert(prior.means.Nrows() == NumParams());
     
     // Set priors
@@ -130,8 +126,6 @@ void pcASLFwdModel::HardcodedInitialDists(MVNDist& prior,
 
 void pcASLFwdModel::Evaluate(const ColumnVector& params, ColumnVector& result) const
 {
-    Tracer_Plus tr("pcASLFwdModel::Evaluate");
-
     double R0 = params(R0index());
     if (R0<1) R0=1; //R0 cannot be negative, or very small for the matter
     
