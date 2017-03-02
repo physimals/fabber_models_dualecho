@@ -55,20 +55,22 @@ It's not worth doing this unless you really need the shared library.
 You can verify that the DUALECHO model is available whichever method you choose:
 
     fabber_dualecho --listmodels
-
-    dualecho
+    
     linear
+    pcasl-dualecho
     poly
-    trivial
+    q2tips-dualecho
+    quipss2
 
 or if you used cmake and built the shared library, you can also do:
 
     fabber --loadmodels=libfabber_models_dualecho.so --listmodels
     
-    dualecho
     linear
+    pcasl-dualecho
     poly
-    trivial
-  
+    q2tips-dualecho
+    quipss2
+
 Note that you still need to specify --model=dualecho on the command line to tell 
 Fabber to use the DUALECHO model.
