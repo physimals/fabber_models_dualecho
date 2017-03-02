@@ -11,27 +11,25 @@
 // The Q2TIPS model is almost identical to QUIPSS II model.
 // Only the Evaluate() function needs to change (and only slightly)
 
-class Q2tipsFwdModel : public Quipss2FwdModel {
+class Q2tipsFwdModel : public Quipss2FwdModel
+{
+public:
+    static FwdModel *NewInstance();
 
-public: 
-  static FwdModel* NewInstance();
+    // Virtual function overrides
+    virtual void Evaluate(const NEWMAT::ColumnVector &params,
+        NEWMAT::ColumnVector &result) const;
 
-  // Virtual function overrides
-  virtual void Evaluate(const NEWMAT::ColumnVector& params, 
-			      NEWMAT::ColumnVector& result) const;
+    virtual string ModelVersion() const;
+    virtual void GetOptions(std::vector<OptionSpec> &opts) const;
+    virtual std::string GetDescription() const;
 
-  virtual string ModelVersion() const;
-  virtual void GetOptions(std::vector<OptionSpec> &opts) const;
-  virtual std::string GetDescription() const;
-  
-  virtual ~Q2tipsFwdModel() { return; }
+    virtual ~Q2tipsFwdModel() { return; }
+    virtual void Initialize(ArgsType &args);
 
-  virtual void Initialize(ArgsType& args);
-
-  virtual vector<string> GetUsage() const;
+    virtual vector<string> GetUsage() const;
 
 private:
-  /** Auto-register with forward model factory. */
-  static FactoryRegistration<FwdModelFactory, Q2tipsFwdModel> registration;
-
+    /** Auto-register with forward model factory. */
+    static FactoryRegistration<FwdModelFactory, Q2tipsFwdModel> registration;
 };

@@ -13,28 +13,12 @@
 #include "fwdmodel_q2tips.h"
 #include "fwdmodel_quipss2.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
+    //add the ASL models from the library - these will autoregister at this point
+    pcASLFwdModel::NewInstance();
+    Quipss2FwdModel::NewInstance();
+    Quipss2FwdModel::NewInstance();
 
-  //add the ASL models from the library - these will autoregister at this point
-  pcASLFwdModel::NewInstance();
-  Quipss2FwdModel::NewInstance();
-  Quipss2FwdModel::NewInstance();
-
-  return execute(argc, argv);
-
+    return execute(argc, argv);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
