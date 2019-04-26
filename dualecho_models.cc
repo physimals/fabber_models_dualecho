@@ -4,17 +4,18 @@ Copyright (C) 2010-2011 University of Oxford */
 
 /* CCOPYRIGHT  */
 
+#include "dualecho_models.h"
 #include "fwdmodel_pcASL.h"
 #include "fwdmodel_q2tips.h"
 #include "fwdmodel_quipss2.h"
 
 extern "C" {
-int get_num_models()
+int CALL get_num_models()
 {
     return 3;
 }
 
-const char *get_model_name(int index)
+const char *CALL get_model_name(int index)
 {
     switch (index)
     {
@@ -32,7 +33,7 @@ const char *get_model_name(int index)
     }
 }
 
-NewInstanceFptr get_new_instance_func(const char *name)
+NewInstanceFptr CALL get_new_instance_func(const char *name)
 {
     if (string(name) == "pcASL")
     {
