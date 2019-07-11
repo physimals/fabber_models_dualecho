@@ -4,6 +4,5 @@ CVS
 *.a
 .DS_Store
 depend.mk
-fabber
-mvntool
+fabber_dualecho
 build
