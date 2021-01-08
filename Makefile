@@ -1,8 +1,8 @@
 include ${FSLCONFDIR}/default.mk
 
 PROJNAME = fabber_dualecho
-LIBS = -lfsl-fabber_models_dualecho -lfsl-fabberexec -lfsl-fabbercore \
-       -lfsl-newimage -lfsl-miscmaths -lfsl-utils -lfsl-cprob \
+LIBS = -lfsl-fabberexec -lfsl-fabbercore -lfsl-newimage \
+       -lfsl-miscmaths -lfsl-utils -lfsl-cprob \
        -lfsl-NewNifti -lfsl-znz -ldl
 XFILES = fabber_dualecho
 SOFILES = libfsl-fabber_models_dualecho.so
@@ -26,10 +26,8 @@ all: ${XFILES} ${SOFILES}
 
 # models in a library
 libfsl-fabber_models_dualecho.so : ${OBJS}
-	${CXX} ${CXXFLAGS} -shared -o $@ $^
+	${CXX} ${CXXFLAGS} -shared -o $@ $^ ${LDFLAGS}
 
 # fabber built from the FSL fabbercore library including the models specifieid in this project
 fabber_dualecho : fabber_client.o libfsl-fabber_models_dualecho.so
-	${CXX} ${CXXFLAGS} -o $@ $< ${LDFLAGS}
-
-# DO NOT DELETE
+	${CXX} ${CXXFLAGS} -o $@ $< -lfsl-fabber_models_dualecho ${LDFLAGS}
