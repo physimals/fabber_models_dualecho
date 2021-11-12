@@ -29,5 +29,5 @@ libfsl-fabber_models_dualecho.so : ${OBJS}
 	${CXX} ${CXXFLAGS} -shared -o $@ $^ ${LDFLAGS}
 
 # fabber built from the FSL fabbercore library including the models specifieid in this project
-fabber_dualecho : fabber_client.o libfsl-fabber_models_dualecho.so
+fabber_dualecho : fabber_client.o | libfsl-fabber_models_dualecho.so
 	${CXX} ${CXXFLAGS} -o $@ $< -lfsl-fabber_models_dualecho ${LDFLAGS}
