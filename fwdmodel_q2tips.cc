@@ -8,12 +8,17 @@
 
 #include "fwdmodel_q2tips.h"
 
-#include "newimage/newimageall.h"
 #include <iostream>
-#include <newmatio.h>
 #include <stdexcept>
-using namespace NEWIMAGE;
+
+#include "armawrap/newmat.h"
+#include "newimage/newimageall.h"
+#include "miscmaths/miscmaths.h"
+
 #include "fabber_core/easylog.h"
+
+using namespace NEWIMAGE;
+using NEWMAT::ColumnVector;
 
 FactoryRegistration<FwdModelFactory, Q2tipsFwdModel>
     Q2tipsFwdModel::registration("q2tips-dualecho");
@@ -53,7 +58,7 @@ void Q2tipsFwdModel::Evaluate(const ColumnVector &params, ColumnVector &result) 
     ColumnVector StatMag = params(M0index()) - Mbasis * MnOf(params);
     ColumnVector CBF = params(Q0index()) + Qbasis * QnOf(params);
     // Fractional change in BOLD effect (at TE_2), rather than using % R2* change
-    ColumnVector R2s = -1 / echoTime(2) * log(
+    ColumnVector R2s = -1 / echoTime(2) * MISCMATHS::log(
                                               Rbasis * RnOf(params) + exp(-echoTime(2) * params(R0index())));
 
     // The following are relative magnetizations
